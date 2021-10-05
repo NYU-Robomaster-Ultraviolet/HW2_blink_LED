@@ -57,8 +57,8 @@ void SystemClock_Config(void);
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	if(htim==&htim1){   // check if it's timer1 that triggers the interrupt
 		// toggle the light of LED, you have to enable led pins as shown in previous meeting			
-			HAL_GPIO_WritePin(LED_R_GPIO_Port, LED_R_Pin,!HAL_GPIO_ReadPin(LED_R_GPIO_Port, LED_R_Pin));	
-			HAL_GPIO_WritePin(LED_B_GPIO_Port, LED_B_Pin,!HAL_GPIO_ReadPin(LED_B_GPIO_Port, LED_B_Pin));
+		HAL_GPIO_WritePin(LED_R_GPIO_Port, LED_R_Pin,!HAL_GPIO_ReadPin(LED_R_GPIO_Port, LED_R_Pin));	
+		HAL_GPIO_WritePin(LED_B_GPIO_Port, LED_B_Pin,!HAL_GPIO_ReadPin(LED_B_GPIO_Port, LED_B_Pin));
 	}
 }
 
