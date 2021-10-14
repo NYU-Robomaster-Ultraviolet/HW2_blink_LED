@@ -79,6 +79,14 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
+  void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+  {
+  if(htim == &htim1)  // check if it’s timer1 that triggers the interrupt
+  {
+  // toggle the light of LED, you have to enable led pins as shown in previous meeting
+  HAL_GPIO_WritePin(LED_R_GPIO_Port, LED_R_Pin, !HAL_GPIO_ReadPin(LED_R_GPIO_Port, LED_R_Pin));
+  HAL_GPIO_WritePin(LED_B_GPIO_Port, LED_B_Pin, !HAL_GPIO_ReadPin(LED_B_GPIO_Port, LED_B_Pin));
+  }
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -122,11 +130,12 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  
+  HAL_TIM_Base_Start_IT(&htim1); 
   while (1)
   {
-		HAL_Delay(10);
-			
+    HAL_GPIO_WritePin(LED_G_GPIO_Port, LED_G_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(LED_B_GPIO_Port, LED_B_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(LED_R_GPIO_Port, LED_R_Pin, GPIO_PIN_SET);
 
     /* USER CODE END WHILE */
 
